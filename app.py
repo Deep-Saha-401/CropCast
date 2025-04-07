@@ -37,10 +37,20 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict_crop():
     try:
-        lat = float(request.args.get('lat'))
-        lon = float(request.args.get('lon'))
-        month = request.args.get('month').upper()
-        year = int(request.args.get('year'))
+        lat = request.args.get('lat')
+        lon = request.args.get('lon')
+        month = request.args.get('month')
+        year = request.args.get('year')
+        
+        # Check if any param is missing
+        if not all([lat, lon, month, year]):
+            return jsonify({"error": "Missing required parameters: lat, lon, month, year"}), 400
+        
+        # Convert types
+        lat = float(lat)
+        lon = float(lon)
+        month = month.upper()
+        year = int(year)
 
         # --- Temperature ---
         temp_url = f"https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M&community=SB&longitude={lon}&latitude={lat}&start=1981&end=2023&format=CSV"
