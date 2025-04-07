@@ -37,11 +37,10 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict_crop():
     try:
-        data = request.json
-        lat = float(data['lat'])
-        lon = float(data['lon'])
-        month = data['month']
-        year = int(data['year'])
+        lat = float(request.args.get('lat'))
+        lon = float(request.args.get('lon'))
+        month = request.args.get('month').upper()
+        year = int(request.args.get('year'))
 
         # --- Temperature ---
         temp_url = f"https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M&community=SB&longitude={lon}&latitude={lat}&start=1981&end=2023&format=CSV"
