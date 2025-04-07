@@ -30,6 +30,10 @@ def predict_feature(data_df, selected_month, input_year):
     prediction = model_fit.forecast(steps=len(future_years))
     return prediction[-1]
 
+@app.route('/')
+def home():
+    return "🌾 Welcome to CropCast API! Use the /predict endpoint with a POST request to get crop predictions."
+
 @app.route('/predict', methods=['POST'])
 def predict_crop():
     try:
