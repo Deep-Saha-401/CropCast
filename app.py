@@ -32,7 +32,7 @@ def predict_feature(data_df, selected_month, input_year):
 
 @app.route('/')
 def home():
-    return "🌾 Welcome to CropCast API! Use the /predict endpoint with a POST request to get crop predictions."
+    return "Welcome to CropCast API! Use the /predict endpoint with a POST request to get crop predictions."
 
 @app.route('/predict', methods=['POST'])
 def predict_crop():
