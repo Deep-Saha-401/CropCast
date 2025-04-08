@@ -34,7 +34,7 @@ def predict_feature(data_df, selected_month, input_year):
 def home():
     return "Welcome to CropCast API! Use the /predict endpoint with a POST request to get crop predictions."
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET'])
 def predict_crop():
     try:
         lat = request.args.get('lat')
